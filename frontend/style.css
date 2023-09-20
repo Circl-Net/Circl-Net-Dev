@@ -2,18 +2,33 @@
     --theme: #66CDAA; 
     --holder: #b7d3b7;
     --button:#81ada0;
-    
 }
 header, main, footer {
     border: 1px solid red;
 }
-.circle-sprite{
+.circle-holder{
+    display:flex;
+    flex-wrap:wrap;
+    width:30%;
+    position:fixed;
+}
+.circle{
     height:100px;
-    width:100px;
-    display:table-cell;
+    width:30%;
+    margin:auto;
+
+    line-height:100px;
     text-align: center;
-    vertical-align: middle;
+
     border-radius:50%;
     border-width: 1px;
-    background-color:antiquewhite;
+    background-color:var(--holder);
+
+}
+.circle span{
+    display:inline-block;
+    
+    vertical-align:middle;
+    overflow-wrap: break-word;
+
 }
