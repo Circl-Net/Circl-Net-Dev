@@ -1,16 +1,21 @@
 :root{
     --theme: #66CDAA; 
-    --holder: #b7d3b7;
+    --holder: #daf1da8c;
+    --subholder:#b6f5b68c;
     --button:#81ada0;
 }
 header, main, footer {
     border: 1px solid red;
 }
-.circle-holder{
+.holder{
+    margin:10px;
+    padding:1%;
+}
+#circle-holder{
     display:flex;
     flex-wrap:wrap;
     width:30%;
-    position:fixed;
+
 }
 .circle{
     height:100px;
@@ -22,13 +27,19 @@ header, main, footer {
 
     border-radius:50%;
     border-width: 1px;
-    background-color:var(--holder);
+    background-color:var(--subholder);
 
 }
-.circle span{
-    display:inline-block;
-    
-    vertical-align:middle;
-    overflow-wrap: break-word;
+
+.circler{
+    display:flex;
+    width:200px;
+    padding-bottom:0.5%;
+}
+
+.align-right{
+    margin-left:auto;
+}
+.right-col{
 
 }
