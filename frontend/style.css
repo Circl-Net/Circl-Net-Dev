@@ -43,3 +43,8 @@ header, main, footer {
 .right-col{
 
 }
+.nav{
+    background-color: var(--holder);
+    margin:auto;
+    
+}
