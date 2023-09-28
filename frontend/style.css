@@ -16,6 +16,13 @@ header, main, footer {
 .left-col, .middle-col, .right-col {
     border: 1px solid red;
 }
+/*Set the width of each column*/
+.left-col, .right-col {
+    width: 30%;
+}
+.middle-col {
+    width: 40%;
+}
 .holder{
     margin:10px;
     padding:1%;
