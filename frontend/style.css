@@ -7,6 +7,15 @@
 header, main, footer {
     border: 1px solid red;
 }
+/*Use flexbox for the layout of main part*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.left-col, .middle-col, .right-col {
+    border: 1px solid red;
+}
 .holder{
     margin:10px;
     padding:1%;
@@ -39,7 +48,4 @@ header, main, footer {
 
 .align-right{
     margin-left:auto;
-}
-.right-col{
-
 }
