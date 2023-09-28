@@ -25,15 +25,30 @@ header, main, footer {
     min-width: 500px;
 }
 /* if the width is smaller or equal to 500px, the left and right column will be hidden.*/
-@media (max-width: 500px) {
+@media (max-width: 1059px) {
     .left-col, .right-col {
         display: none;
     }
+    .middle-col {
+        display: block;
+    }
 }
-h2, p {
+h2, p, .posts {
     width: 500px;
     border: 1px solid red;
     margin: 0 auto;
+}
+.profile-image {
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+}
+.map-image {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px auto;
 }
 .holder{
     margin:10px;
