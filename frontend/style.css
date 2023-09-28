@@ -22,6 +22,18 @@ header, main, footer {
 }
 .middle-col {
     width: 40%;
+    min-width: 500px;
+}
+/* if the width is smaller or equal to 500px, the left and right column will be hidden.*/
+@media (max-width: 500px) {
+    .left-col, .right-col {
+        display: none;
+    }
+}
+h2, p {
+    width: 500px;
+    border: 1px solid red;
+    margin: 0 auto;
 }
 .holder{
     margin:10px;
@@ -30,7 +42,7 @@ header, main, footer {
 #circle-holder{
     display:flex;
     flex-wrap:wrap;
-    width:30%;
+    /*width:30%;*/
 
 }
 .circle{
