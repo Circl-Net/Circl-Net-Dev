@@ -18,12 +18,14 @@ header, main, footer {
 
 }
 .circle{
-    height:100px;
+ 
     width:30%;
     margin:auto;
+    padding:10% 5%;
 
-    line-height:100px;
+
     text-align: center;
+    text-wrap: wrap;
 
     border-radius:50%;
     border-width: 1px;
