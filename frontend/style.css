@@ -33,15 +33,21 @@ header, main, footer {
         display: block;
     }
 }
-h2, p, .posts {
+h2, .circl-intro {
     width: 500px;
     border: 1px solid red;
     margin: 0 auto;
 }
+.posts {
+    width: 500px;
+    background-color: var(--button);
+    margin: 1em auto;
+}
 .profile-image {
-    height: 5em;
-    width: 5em;
+    height: 3em;
+    width: 3em;
     border-radius: 50%;
+    margin: 10px;
 }
 .map-image {
     height: 300px;
@@ -49,6 +55,13 @@ h2, p, .posts {
     border-radius: 50%;
     overflow: hidden;
     margin: 20px auto;
+}
+.user-name, .profile-image {
+    display: inline;
+    vertical-align: middle;
+}
+.post-content {
+    padding: 10px;
 }
 .holder{
     margin:10px;
