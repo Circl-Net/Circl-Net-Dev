@@ -7,6 +7,62 @@
 header, main, footer {
     border: 1px solid red;
 }
+/*Use flexbox for the layout of main part*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.left-col, .middle-col, .right-col {
+    border: 1px solid red;
+}
+/*Set the width of each column*/
+.left-col, .right-col {
+    width: 30%;
+}
+.middle-col {
+    width: 40%;
+    min-width: 500px;
+}
+/* if the width is smaller or equal to 500px, the left and right column will be hidden.*/
+@media (max-width: 1059px) {
+    .left-col, .right-col {
+        display: none;
+    }
+    .middle-col {
+        display: block;
+    }
+}
+h2, .circl-intro {
+    width: 500px;
+    border: 1px solid red;
+    margin: 0 auto;
+}
+.posts {
+    width: 500px;
+    background-color: var(--button);
+    margin: 1em auto;
+}
+.profile-image {
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    margin: 10px;
+}
+.map-image {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px auto;
+}
+.user-name, .profile-image {
+    display: inline;
+    vertical-align: middle;
+}
+.post-content {
+    padding: 10px;
+}
 .holder{
     margin:10px;
     padding:1%;
@@ -14,16 +70,15 @@ header, main, footer {
 #circle-holder{
     display:flex;
     flex-wrap:wrap;
-    width:30%;
-
+    /*width:30%;*/
 }
+
 .circle{
  
     width:30%;
     margin:auto;
-    padding:10% 5%;
 
-
+    line-height:100px;
     text-align: center;
     text-wrap: wrap;
 
