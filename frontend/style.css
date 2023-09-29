@@ -71,13 +71,13 @@ h2, .circl-intro {
     display:flex;
     flex-wrap:wrap;
     /*width:30%;*/
-
 }
+
 .circle{
+    
     height:100px;
     width:30%;
     margin:auto;
-
     line-height:100px;
     text-align: center;
 
