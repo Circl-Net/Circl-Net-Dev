@@ -44,6 +44,7 @@ h2, .circl-intro {
     width: 500px;
     background-color: var(--button);
     margin: 1em auto;
+    padding: 10px 30px;
 }
 .circle-title {
     margin: 2em auto;
@@ -65,12 +66,12 @@ h2, .circl-intro {
     display: inline;
     vertical-align: middle;
 }
-.post-content {
-    padding: 10px;
-}
+/*.post-title {
+    margin-top: 5px;
+}*/
 .post-image {
-    margin: 0 4.5%;
-    max-width: 90%;
+    /*margin: 0 4.5%;*/
+    max-width: 100%;
     height: auto;
 }
 .holder{
