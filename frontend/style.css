@@ -52,9 +52,6 @@ h1 {
 .circle-title-2{
     margin: auto;
 }
-.circl-intro {
-    padding-top: 1em;
-}
 .posts, .circle-title {
     width: 500px;
     background-color: var(--button);
