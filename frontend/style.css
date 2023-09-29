@@ -4,11 +4,25 @@
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
-header, main, footer {
+main, footer {
     border: 1px solid red;
 }
+body {
+    width: 100vw;
+    margin: 0;
+}
+header {
+    height: 10vh;
+    margin-top: 0;
+    background-color: var(--theme);
+}
+h1 {
+    text-align: center;
+    margin-top: 0;
+    line-height: 10vh;
+}
 /*Use flexbox for the layout of main part*/
-.flex-container {
+.flex-container, .nav-bar {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -113,6 +127,13 @@ h2, .circl-intro {
 }
 .nav{
     background-color: var(--holder);
-    margin:auto;
-    
+    margin:auto; 
+}
+nav, .nav {
+    display: inline;
+}
+.search-bar {
+    margin: 0 auto;
+    border: 1px solid red;
+    width: 90%;
 }
