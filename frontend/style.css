@@ -35,8 +35,10 @@ header, main, footer {
 }
 h2, .circl-intro {
     width: 500px;
-    border: 1px solid red;
     margin: 0 auto;
+}
+.circl-intro {
+    padding-top: 1em;
 }
 .posts {
     width: 500px;
