@@ -26,9 +26,7 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-.left-col, .middle-col, .right-col {
-    border: 1px solid red;
+    padding: 10px;
 }
 /*Set the width of each column*/
 .left-col, .right-col {
@@ -127,13 +125,18 @@ h2, .circl-intro {
 }
 .nav{
     background-color: var(--holder);
-    margin:auto; 
-}
-nav, .nav {
-    display: inline;
+    margin:auto;
+    text-align: right; 
 }
 .search-bar {
     margin: 0 auto;
-    border: 1px solid red;
     width: 90%;
+    text-align: center;
+}
+.search-bar label input {
+    margin-right: 10px;
+    width: 75%;
+}
+.nav-bar {
+    background-color: var(--subholder);
 }
