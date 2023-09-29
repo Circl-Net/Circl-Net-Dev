@@ -4,22 +4,19 @@
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
-main, footer {
-    border: 1px solid red;
-}
-body {
-    width: 100vw;
+
+body{
     margin: 0;
 }
 header {
-    height: 10vh;
+    height: 70px;
     margin-top: 0;
     background-color: var(--theme);
 }
 h1 {
     text-align: center;
     margin-top: 0;
-    line-height: 10vh;
+    line-height: 70px;
 }
 /*Use flexbox for the layout of main part*/
 .flex-container, .nav-bar {
@@ -45,21 +42,30 @@ h1 {
         display: block;
     }
 }
-h2, .circl-intro {
+/*h2, .circl-intro {
     width: 500px;
     margin: 0 auto;
+}*/
+.circle-title-1 {
+    width: 70%;
+}
+.circle-title-2{
+    margin: auto;
 }
 .circl-intro {
     padding-top: 1em;
 }
-.posts {
+.posts, .circle-title {
     width: 500px;
     background-color: var(--button);
     margin: 1em auto;
     padding: 10px 30px;
 }
 .circle-title {
-    margin: 2em auto;
+    display: flex;
+    width: 500px;
+    background-color: var(--holder);
+    margin: 1em auto;
 }
 .profile-image {
     height: 3em;
@@ -139,4 +145,22 @@ h2, .circl-intro {
 }
 .nav-bar {
     background-color: var(--subholder);
+}
+
+nav {
+    text-align: center;
+    background-color: var(--holder);
+    padding: 1em;
+}
+nav a, .nav a {
+    text-decoration: none;
+    margin: auto 2em;
+}
+.reactions textarea, .post-comment-button {
+    display: block;
+    width: 495px;
+    margin: 1em 0 1em auto;
+}
+.post-comment-button {
+    text-align: right;
 }
