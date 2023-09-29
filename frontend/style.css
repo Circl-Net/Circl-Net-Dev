@@ -82,12 +82,13 @@ h2, .circl-intro {
 }
 
 .circle{
-    
-    height:100px;
+ 
     width:30%;
     margin:auto;
+
     line-height:100px;
     text-align: center;
+    text-wrap: wrap;
 
     border-radius:50%;
     border-width: 1px;
@@ -103,4 +104,12 @@ h2, .circl-intro {
 
 .align-right{
     margin-left:auto;
+}
+.right-col{
+
+}
+.nav{
+    background-color: var(--holder);
+    margin:auto;
+    
 }
