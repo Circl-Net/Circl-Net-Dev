@@ -4,17 +4,26 @@
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
-header, main, footer {
-    border: 1px solid red;
+
+body{
+    margin: 0;
+}
+header {
+    height: 70px;
+    margin-top: 0;
+    background-color: var(--theme);
+}
+h1 {
+    text-align: center;
+    margin-top: 0;
+    line-height: 70px;
 }
 /*Use flexbox for the layout of main part*/
-.flex-container {
+.flex-container, .nav-bar {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-.left-col, .middle-col, .right-col {
-    border: 1px solid red;
+    padding: 10px;
 }
 /*Set the width of each column*/
 .left-col, .right-col {
@@ -33,14 +42,26 @@ header, main, footer {
         display: block;
     }
 }
-h2, .circl-intro {
+/*h2, .circl-intro {
     width: 500px;
-    border: 1px solid red;
     margin: 0 auto;
+}*/
+.circle-title-1 {
+    width: 70%;
 }
-.posts {
+.circle-title-2{
+    margin: auto;
+}
+.posts, .circle-title {
     width: 500px;
     background-color: var(--button);
+    margin: 1em auto;
+    padding: 10px 30px;
+}
+.circle-title {
+    display: flex;
+    width: 500px;
+    background-color: var(--holder);
     margin: 1em auto;
 }
 .profile-image {
@@ -60,12 +81,12 @@ h2, .circl-intro {
     display: inline;
     vertical-align: middle;
 }
-.post-content {
-    padding: 10px;
-}
+/*.post-title {
+    margin-top: 5px;
+}*/
 .post-image {
-    margin: 0 4.5%;
-    max-width: 90%;
+    /*margin: 0 4.5%;*/
+    max-width: 100%;
     height: auto;
 }
 .holder{
@@ -115,42 +136,35 @@ h2, .circl-intro {
     padding:2%;
     background-color: var(--holder);
     margin:auto;
-    
+    text-align: right; 
 }
-a{
-    margin:auto;
+.search-bar {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+}
+.search-bar label input {
+    margin-right: 10px;
+    width: 75%;
+}
+.nav-bar {
+    background-color: var(--subholder);
 }
 
-  input, button,textarea, select{
-    padding:5%;
-    display:block;
-    font-family:inherit;
-    margin:10% auto;
-    background-color: rgb(234, 241, 234);
-    border:none;
-    
-  }
-  #login input{
-   
-    min-width:300px;
-  }
- 
-  button{
-    background-color: var(--button);
-    color:white;
-    font-size:150%;
-    border-radius:30%;
-    margin-bottom:0;
-    
-  }
-  button:hover{
-    opacity:0.5;
-  }
-  :focus{
-    background-color:white;
-  }
-  #not-login{
-
-    font-size:70%;
-
-  }
+nav {
+    text-align: center;
+    background-color: var(--holder);
+    padding: 1em;
+}
+nav a, .nav a {
+    text-decoration: none;
+    margin: auto 2em;
+}
+.reactions textarea, .post-comment-button {
+    display: block;
+    width: 495px;
+    margin: 1em 0 1em auto;
+}
+.post-comment-button {
+    text-align: right;
+}
