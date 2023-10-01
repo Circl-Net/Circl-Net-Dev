@@ -168,7 +168,7 @@ nav a, .nav a {
 .post-comment-button {
     text-align: right;
 }
-input, button,textarea, select{
+#login input, #login button{
     padding:5%;
     display:block;
     font-family:inherit;
@@ -182,7 +182,7 @@ input, button,textarea, select{
     min-width:300px;
   }
 
-  button{
+  #login button{
     background-color: var(--button);
     color:white;
     font-size:150%;
