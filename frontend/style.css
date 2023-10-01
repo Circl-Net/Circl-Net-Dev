@@ -75,20 +75,25 @@ h2, .circl-intro {
 #circle-holder{
     display:flex;
     flex-wrap:wrap;
+
     /*width:30%;*/
+}
+#circle{
+    width:20%;
+    margin:auto;
+    text-align: center;
+   
+
 }
 
 .circle{
- 
-    width:30%;
+    padding:10%;
+    display:block;
+    width:max-content;
     margin:auto;
-
-    line-height:100px;
-    text-align: center;
-    text-wrap: wrap;
-
     border-radius:50%;
     border-width: 1px;
+
     background-color:var(--subholder);
 
 }
@@ -106,7 +111,46 @@ h2, .circl-intro {
 
 }
 .nav{
+    display:flex;
+    padding:2%;
     background-color: var(--holder);
     margin:auto;
     
 }
+a{
+    margin:auto;
+}
+
+  input, button,textarea, select{
+    padding:5%;
+    display:block;
+    font-family:inherit;
+    margin:10% auto;
+    background-color: rgb(234, 241, 234);
+    border:none;
+    
+  }
+  #login input{
+   
+    min-width:300px;
+  }
+ 
+  button{
+    background-color: var(--button);
+    color:white;
+    font-size:150%;
+    border-radius:30%;
+    margin-bottom:0;
+    
+  }
+  button:hover{
+    opacity:0.5;
+  }
+  :focus{
+    background-color:white;
+  }
+  #not-login{
+
+    font-size:70%;
+
+  }
