@@ -22,7 +22,7 @@ h1 {
 .flex-container, .nav-bar {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     padding: 10px;
 }
 /*Set the width of each column*/
@@ -168,21 +168,44 @@ nav a, .nav a {
 .post-comment-button {
     text-align: right;
 }
-#login input, #login button{
-    padding:5%;
-    display:block;
+
+
+form input, form button{
+    padding:10px;
     font-family:inherit;
-    margin:10% auto;
     background-color: rgb(234, 241, 234);
     border:none;
+    margin:auto;
+    
+   
 
   }
-  #login input{
+  #signup {
+    .flex-container{
+        justify-content: left;
+        ;
 
+    }
+  
+
+}
+#signup input{
+    margin-right:5px;
+    
+
+}
+input[type="radio"]{
+    margin: 0 0 0 20px;
+}
+    
+  #login input{
+    margin:10% auto;
+    display:block;
     min-width:300px;
   }
 
-  #login button{
+ form button{
+    display:block;
     background-color: var(--button);
     color:white;
     font-size:150%;
