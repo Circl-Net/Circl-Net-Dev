@@ -76,5 +76,53 @@
       
     </form>
 </div>
+<div class="circle">
+    <form action="/signup" method="POST"  id="login">
+        <legend>Account</legend>
+      
+        <label for="username" class="required"> 
+        <input type="text" name="username" id="username" 
+        required
+        placeholder="User Name " >
+        </label>
+        
+        <label for="password" class="required"></label>
+        <input type="password" 
+        name="password" 
+        id="password"
+        required
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        placeholder="Password"> 
+
+        <label for="password" class="required"></label>
+        <input type="password" 
+        name="password" 
+        id="password"
+        required
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        placeholder="Confirm your password"> 
+    </label>
+        <button type="submit">Done</button>
+    </form>
+</div>
+
+    <label for="location" class="required"> 
+        Search for your circles...
+        <input type="text" name="location" id="locaion" 
+        required
+        placeholder="San Diego" >
+        </label>
+
+<div>
+    <div class="flex-container">
+        <div class="circle">
+            San Diego 
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
