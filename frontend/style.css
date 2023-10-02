@@ -1,6 +1,6 @@
 :root{
     --theme: #66CDAA; 
-    --holder: #daf1da8c;
+    --holder: #dff5df8c;
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
@@ -18,16 +18,9 @@ h1 {
     margin-top: 0;
     line-height: 70px;
 }
-/*Use flexbox for the layout of main part*/
-.flex-container, .nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px;
-}
 /*Set the width of each column*/
 .left-col, .right-col {
-    width: 30%;
+    width: 20%;
 }
 .middle-col {
     width: 40%;
@@ -42,6 +35,14 @@ h1 {
         display: block;
     }
 }
+/*Use flexbox for the layout of main part*/
+.flex-container, .nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+}
+
 /*h2, .circl-intro {
     width: 500px;
     margin: 0 auto;
@@ -61,7 +62,7 @@ h1 {
 .circle-title {
     display: flex;
     width: 500px;
-    background-color: var(--holder);
+   
     margin: 1em auto;
 }
 .profile-image {
