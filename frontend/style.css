@@ -4,7 +4,16 @@
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
+.circle{
+    padding:5%;
+    display:block;
+    width:max-content;
+    margin:auto;
+    border-radius:50%;
+    border-width: 1px;
+    background-color:var(--subholder);
 
+}
 body{
     margin: 0;
 }
@@ -18,12 +27,12 @@ h1 {
     margin-top: 0;
     line-height: 70px;
 }
-/*Set the width of each column*/
+/* Page Layout  */
 .left-col, .right-col {
     width: 20%;
 }
 .middle-col {
-    width: 40%;
+    width: 45%;
     min-width: 500px;
 }
 /* if the width is smaller or equal to 500px, the left and right column will be hidden.*/
@@ -36,9 +45,10 @@ h1 {
     }
 }
 /*Use flexbox for the layout of main part*/
-.flex-container, .nav-bar {
+.flex-container{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 10px;
 }
@@ -54,16 +64,8 @@ h1 {
     margin: auto;
 }
 .posts, .circle-title {
-    width: 500px;
-    background-color: var(--button);
     margin: 1em auto;
     padding: 10px 30px;
-}
-.circle-title {
-    display: flex;
-    width: 500px;
-   
-    margin: 1em auto;
 }
 .profile-image {
     height: 3em;
@@ -91,8 +93,9 @@ h1 {
     height: auto;
 }
 .holder{
-    margin:10px;
+
     padding:1%;
+    background-color: var(--holder);
 }
 #circle-holder{
     display:flex;
@@ -101,37 +104,21 @@ h1 {
     /*width:30%;*/
 }
 #circle{
-    width:20%;
-    margin:auto;
-    text-align: center;
-   
-
-}
-
-.circle{
+    width:25%;
     padding:10%;
-    display:block;
-    width:max-content;
-    margin:auto;
-    border-radius:50%;
-    border-width: 1px;
-
-    background-color:var(--subholder);
+    text-align: center;
 
 }
 
-.circler{
-    display:flex;
-    width:200px;
-    padding-bottom:0.5%;
+
+#circler{
+    padding-bottom:1px;
 }
 
 .align-right{
     margin-left:auto;
 }
-.right-col{
 
-}
 .nav{
     display:flex;
     padding:2%;
