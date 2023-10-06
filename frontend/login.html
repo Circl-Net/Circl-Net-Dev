@@ -7,8 +7,33 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>This is the header</header>
-    <main>This is the main</main>
-    <footer>This is the footer</footer>
+    <div class="circle">
+
+    <form action="/login" method="POST" id="login">
+      
+    
+        <label for="username" class="reqired"> 
+        <input type="text" name="username" id="username" 
+        required
+        pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
+        placeholder="Username, email or phone number " >
+        </label>
+
+        <label for="password" class="required"></label>
+        <input type="password" 
+        name="password" 
+        id="password"
+        required
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        placeholder="Password"> 
+        <div class="flex-container" id="not-login">
+
+       <a href="signup.html">Not a Circler? Sign up</a>
+       <a href="">Forgot password</a>
+       </div>
+        <button type="submit">Log in</button>
+      
+    </form>
+  </div>
   </body>
 </html>

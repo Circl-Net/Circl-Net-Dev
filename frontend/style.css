@@ -1,6 +1,6 @@
 :root{
     --theme: #66CDAA; 
-    --holder: #daf1da8c;
+    --holder: #dff5df8c;
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
@@ -18,16 +18,9 @@ h1 {
     margin-top: 0;
     line-height: 70px;
 }
-/*Use flexbox for the layout of main part*/
-.flex-container, .nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 10px;
-}
 /*Set the width of each column*/
 .left-col, .right-col {
-    width: 30%;
+    width: 20%;
 }
 .middle-col {
     width: 40%;
@@ -42,6 +35,14 @@ h1 {
         display: block;
     }
 }
+/*Use flexbox for the layout of main part*/
+.flex-container, .nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+}
+
 /*h2, .circl-intro {
     width: 500px;
     margin: 0 auto;
@@ -61,7 +62,7 @@ h1 {
 .circle-title {
     display: flex;
     width: 500px;
-    background-color: var(--holder);
+   
     margin: 1em auto;
 }
 .profile-image {
@@ -96,20 +97,25 @@ h1 {
 #circle-holder{
     display:flex;
     flex-wrap:wrap;
+
     /*width:30%;*/
+}
+#circle{
+    width:20%;
+    margin:auto;
+    text-align: center;
+   
+
 }
 
 .circle{
- 
-    width:30%;
+    padding:10%;
+    display:block;
+    width:max-content;
     margin:auto;
-
-    line-height:100px;
-    text-align: center;
-    text-wrap: wrap;
-
     border-radius:50%;
     border-width: 1px;
+
     background-color:var(--subholder);
 
 }
@@ -127,6 +133,8 @@ h1 {
 
 }
 .nav{
+    display:flex;
+    padding:2%;
     background-color: var(--holder);
     margin:auto;
     text-align: right; 
@@ -161,3 +169,57 @@ nav a, .nav a {
 .post-comment-button {
     text-align: right;
 }
+
+
+form input, form button{
+    padding:10px;
+    font-family:inherit;
+    background-color: rgb(234, 241, 234);
+    border:none;
+    margin:auto;
+    
+   
+
+  }
+  #signup {
+    .flex-container{
+        justify-content: left;
+        ;
+
+    }
+  
+
+}
+#signup input{
+    margin-right:5px;
+}
+input[type="radio"]{
+    margin: 0 0 0 20px;
+}
+    
+  #login input{
+    margin:10% auto;
+    display:block;
+    min-width:300px;
+  }
+
+ form button{
+    display:block;
+    background-color: var(--button);
+    color:white;
+    font-size:150%;
+    border-radius:30%;
+    margin-bottom:0;
+
+  }
+  button:hover{
+    opacity:0.5;
+  }
+  :focus{
+    background-color:white;
+  }
+  #not-login{
+
+    font-size:70%;
+
+  }
