@@ -5,7 +5,6 @@ function Message() {
         <>
         <div class="message-container">
       <div class="friends-panel">
-        <!--add a is-active class to the button below to trigger active-->
         <button class="hamburger hamburger--collapse" type="button">
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
