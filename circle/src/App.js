@@ -1,14 +1,17 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+//IMPORT COMPONENT
+import Nav from './components/Nav.js';
+
+//IMPORT PAGES
+import Message from './pages/Message.js';
+import Profile from './pages/Profile.js';
 import HomePage from './pages/HomePage.js';
 import CirclePage from './pages/CirclePage.js';
 import Login from './pages/Login.js';
-import Nav from './components/Nav.js';
-import Signup from './components/Signup.js';
-import Message from './components/Message.js';
-import CreatePost from './components/CreatePost.js';
-import Profile from './components/Profile.js';
+import Signup from './pages/Signup.js';
 
 function App() {
   return (
@@ -16,7 +19,9 @@ function App() {
       <BrowserRouter>
         <header>
           <h1>Circl Net</h1>
+
           <Nav/>
+
         </header>
         
         <main>
@@ -27,8 +32,8 @@ function App() {
               <Route path='/login' element={<Login/>}/>
               <Route path='signup' element={<Signup/>}/>
               <Route path='/message' element={<Message/>}/>
-              <Route path='/create_post' element={<CreatePost/>}/>
               <Route path='/profile' element={<Profile/>}/>
+              <Route path='/signup' element={<Signup/>}/>
             </Routes>
           </section>
         </main>

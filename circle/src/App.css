@@ -132,8 +132,10 @@ h1 {
 .right-col{
 
 }
-.nav{
+.nav-bar{
+  
     display:flex;
+    display:block;
     padding:2%;
     background-color: var(--holder);
     margin:auto;
@@ -148,13 +150,10 @@ h1 {
     margin-right: 10px;
     width: 75%;
 }
-.nav-bar {
-    background-color: var(--subholder);
-}
 
 nav {
     text-align: center;
-    background-color: var(--holder);
+    background-color: var(--theme);
     padding: 1em;
 }
 nav a, .nav a {

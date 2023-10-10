@@ -9,16 +9,16 @@ function Signup () {
         <legend>Tell us a bit about yourself...</legend>
         <div class="flex-container">
         <label for="firstname" class="required"> 
-        <input type="text" name="firstname" id="firstname" 
+         <input type="text" name="firstname" id="firstname" 
         required
         pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
-        placeholder="First Name " >
+        placeholder="First Name " />
         </label>
         <label for="lastname" class="required"> 
             <input type="text" name="lastname" id="lastname" 
             required
             pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
-            placeholder="Last Name " >
+            placeholder="Last Name " />
             </label>
             </div>
             <div class="flex-container">
@@ -34,10 +34,10 @@ function Signup () {
             </div>
             <div class="flex-container">
 
-                <label for="dob" class="required"> Date of birth: 
+                <label for="dob" className="required"> Date of birth: 
                     <input type="date" name="lastname" id="dob" 
                     required
-                    pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)">
+                    pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"/>
                     </label>
 </div>
            <div class="flex-container">
@@ -46,25 +46,25 @@ function Signup () {
                 required
                 pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
                 maxlength="50"
-                placeholder="Address Line 1 " >
+                placeholder="Address Line 1 " />
                 </label></div>
             <div><label for="city" class="required city"> 
                     <input type="textarea" name="city" id="city" 
                     required
-                    placeholder="City" >
+                    placeholder="City" />
                     </label></div> 
-            <    
+                
                 <label for="state" class="required state"> 
                     <input type="textarea" name="state" id="state" 
                     required
-                    placeholder="State " >
+                    placeholder="State " />
                     </label>
                     <label for="zip" class="required zip"> 
                         <input type="number" name="zip" id="city" 
                         required
                         maxlength="10"
                         size="5"
-                        placeholder="ZIP Code" >
+                        placeholder="ZIP Code" />
                     </label>
 
            </div>
@@ -79,7 +79,7 @@ function Signup () {
         <label for="username" class="required"> 
         <input type="text" name="username" id="username" 
         required
-        placeholder="User Name " >
+        placeholder="User Name " />
         </label>
         
         <label for="password" class="required"></label>
@@ -88,7 +88,7 @@ function Signup () {
         id="password"
         required
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        placeholder="Password"> 
+        placeholder="Password"/> 
 
         <label for="password" class="required"></label>
         <input type="password" 
@@ -96,8 +96,8 @@ function Signup () {
         id="password"
         required
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        placeholder="Confirm your password"> 
-    </label>
+        placeholder="Confirm your password"/> 
+    
         <button type="submit">Done</button>
     </form>
 </div>
@@ -106,7 +106,7 @@ function Signup () {
         Search for your circles...
         <input type="text" name="location" id="locaion" 
         required
-        placeholder="San Diego" >
+        placeholder="San Diego"/ >
         </label>
 
 <div>

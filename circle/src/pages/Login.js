@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
  return (
@@ -23,8 +24,8 @@ function Login() {
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
         placeholder="Password" /> 
         <div class="flex-container" id="not-login">
-
-       <a href="signup.html">Not a Circler? Sign up</a>
+        <Link to="../signup">Not a Circler? Sign up</Link>
+       
        <a href="">Forgot password</a>
        </div>
         <button type="submit">Log in</button>
