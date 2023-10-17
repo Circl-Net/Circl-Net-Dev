@@ -9,7 +9,7 @@ body{
     margin: 0;
 }
 header {
-    height: 70px;
+    /*height: 70px;*/
     margin-top: 0;
     background-color: var(--theme);
 }

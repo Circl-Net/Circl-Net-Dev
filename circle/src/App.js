@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+//https://www.educative.io/answers/how-to-implement-a-server-for-reactjs-and-mysql-application
 
 //IMPORT COMPONENT
 import Nav from './components/Nav.js';
@@ -15,7 +15,7 @@ import Papa from 'papaparse';
 import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
 //import * as fs from 'node:fs';
-const fs = require('fs');
+/*const fs = require('fs');
 const papa = require('papaparse');
 const file = fs.createReadStream('./data/user.csv');
 var count = 0; // cache the running count
@@ -66,10 +66,10 @@ function randomAssignCircles(){
 
 }
 
-
+*/
 function App() {
 
-  randomAssignCircles();
+  //randomAssignCircles();
 
   return (
     <div className="App">
