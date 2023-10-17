@@ -46,24 +46,25 @@
                     </label>
 </div>
            <div class="flex-container">
-            <label for="address" class="required"> 
+            <div class="address"><label for="address" class="required"> 
                 <input type="textarea" name="address" id="address" 
                 required
                 pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
                 maxlength="50"
                 placeholder="Address Line 1 " >
-                </label>
-                <label for="city" class="required"> 
+                </label></div>
+            <div><label for="city" class="required city"> 
                     <input type="textarea" name="city" id="city" 
                     required
                     placeholder="City" >
-                    </label>
-                <label for="state" class="required"> 
+                    </label></div> 
+            <    
+                <label for="state" class="required state"> 
                     <input type="textarea" name="state" id="state" 
                     required
                     placeholder="State " >
                     </label>
-                    <label for="zip" class="required"> 
+                    <label for="zip" class="required zip"> 
                         <input type="number" name="zip" id="city" 
                         required
                         maxlength="10"
@@ -119,10 +120,8 @@
             San Diego 
         </div>
         <div>
-
         </div>
     </div>
-
 </div>
 </body>
 </html>
