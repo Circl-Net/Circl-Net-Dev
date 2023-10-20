@@ -2,15 +2,51 @@
 //Date: 08/12/2023
 //Originality: Adapted
 //Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/ 
+// Express
+var express = require('express');
+var app = express();
+//PORT = 8000;
 
+// Database
+//var db = require('./database/db-connector')
+// Get an instance of mysql we can use in the app
+var mysql = require('mysql')
+
+// Create a 'connection pool' using the provided credentials
+let connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '159357@',
+    database: 'mysql'
+});
+
+// Export it for use in our applicaiton
+//module.exports.pool = pool;
+connection.connect(function(err) {
+  if (err) {
+    return console.error('error: ' + err.message);
+  }
+
+  console.log('Connected to the MySQL server.');
+});
+
+//const { engine } = require('express-handlebars');
+//var exphbs = require('express-handlebars');     // Import express-handlebars
+const { query } = require ('express');
+//app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
+//app.set('view engine', '.hbs');  
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
 // Express
 
-const express = require("express");
+//const express = require("express");
 const csvParser = require("csv-parser");
 const fs = require('fs');
 const PORT = process.env.PORT || 3003;
 
-const app = express();
+//const app = express();
 let allUsers = [];
 let allLocations=[];
 app.listen(PORT, () => {
