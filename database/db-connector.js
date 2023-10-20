@@ -5,8 +5,8 @@ var mysql = require('mysql')
 let pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '159357@',
-    database: 'circle'
+    password: 'mysql',
+    database: 'mysql'
 });
 
 // Export it for use in our applicaiton

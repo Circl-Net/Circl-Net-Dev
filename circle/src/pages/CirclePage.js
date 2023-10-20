@@ -1,8 +1,9 @@
 import React from "react";
 
 function CirclePage() {
+  const redirect = useNavigate();
   const addCircle = async () => {
-    const newItem = { name, date, price };
+    const newItem = { nam, date, price };
     const response = await fetch('/items', {
         method: 'post',
         body: JSON.stringify(newItem),
