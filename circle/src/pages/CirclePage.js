@@ -1,6 +1,23 @@
 import React from "react";
 
 function CirclePage() {
+  const addCircle = async () => {
+    const newItem = { name, date, price };
+    const response = await fetch('/items', {
+        method: 'post',
+        body: JSON.stringify(newItem),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    if (response.status === 201) {
+        alert(`document added`);
+        redirect("/log");
+    } else {
+        alert(`document not added status code = ${response.status}`);
+        redirect("/log");
+    }
+};
     return (
       <>
       <div class="flex-container">
