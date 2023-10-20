@@ -2,15 +2,39 @@
 //Date: 08/12/2023
 //Originality: Adapted
 //Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/ 
-
 // Express
+var express = require('express');
+var app = express();
+PORT = 8018;
 
-const express = require("express");
+// Database
+//var db = require('./database/db-connector')
+var mysql = require('mysql')
+
+// Create a 'connection pool' using the provided credentials
+let db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '159357@',
+    database: 'mysql'
+});
+//const { engine } = require('express-handlebars');
+//var exphbs = require('express-handlebars');     // Import express-handlebars
+const { query } = require ('express');
+//app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
+//app.set('view engine', '.hbs');  
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
+// Express
+/*
+//const express = require("express");
 const csvParser = require("csv-parser");
 const fs = require('fs');
-const PORT = process.env.PORT || 3003;
+//const PORT = process.env.PORT || 3003;
 
-const app = express();
+//const app = express();
 let allUsers = [];
 let allLocations=[];
 app.listen(PORT, () => {
@@ -80,8 +104,17 @@ app.get('/api', function(req, res)
       console.log(allLocations);                                                    // an object where 'data' is equal to the 'rows' we
     });    
 readData();
-
-
+*/
+/*  ---------------- Read and create the Users Page -------------------------- */
+app.get('/users', function (req, res)
+    {
+        let query1= `SELECT user_id AS "User ID", user_name AS "User Name", email AS Email, password AS Password 
+        FROM Users;`;
+       
+        db.pool.query(query1, function(error, rows, fields){  
+            res.render('users', {data: rows});
+            })
+    });
 
 // // Database
 // var db = require('./database/db-connector')

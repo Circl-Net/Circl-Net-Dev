@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+//https://www.educative.io/answers/how-to-implement-a-server-for-reactjs-and-mysql-application
 
 //IMPORT COMPONENT
 import Nav from './components/Nav.js';
@@ -17,13 +17,11 @@ import Signup from './pages/Signup.js';
 //import * as fs from 'node:fs';
 
 
-
+*/
 function App() {
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+
+  randomAssignCircles();
+
   return (
     <div className="App">
 
