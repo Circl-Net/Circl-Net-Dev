@@ -7,28 +7,79 @@
 
 const express = require("express");
 const csvParser = require("csv-parser");
-
-const PORT = process.env.PORT || 3001;
+const fs = require('fs');
+const PORT = process.env.PORT || 3003;
 
 const app = express();
-
+let allUsers = [];
+let allLocations=[];
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
-app.get("/api", (req, res) => {
-    let allUsers = [];
-    const fs = require('fs');
-    fs.createReadStream("./circle/src/data/user.csv")
-    .pipe(csvParser())
-    .on("data", (data)=> {
-        console.log(data);
-        allUsers.push(data);
-    });
-    console.log(allUsers);
-
-    res.json({ allUsers });
+function readData(){
+  fs.createReadStream("./circle/src/data/user.csv")
+  .pipe(csvParser())
+  .on("data", (data)=> {
+    if (data){
+      allUsers.push(
+        data
+      )
+    }
   });
+  fs.createReadStream("./circle/src/data/location.csv")
+  .pipe(csvParser())
+  .on("data", (data)=> {
+    allLocations.push(data);
+  });
+}
+const CAPACITY=10;
+
+console.log(allUsers);
+let circleObj = [];
+function random(min, max){
+  return Math.floor(Math.random() * max) + min;
+}
+function getRandomUsers(num){
+  let list = [];
+  let currId = 1;
+  for (let p = 0; p < num; p++){
+    currId = random(currId, num);
+    list.push(allUsers[currId]);
+  }
+  return list;
+}
+function randomAssignCircles(){
+  const numOfCircles = random(1,10);
+  console.log(numOfCircles);
+
+  for (let i = 0; i < numOfCircles; i++){
+    const numOfCirclers = random(1, CAPACITY);
+    let listOfCirclers = getRandomUsers(numOfCirclers);
+    const locationId = random(1, allLocations.length);
+    circleObj.push({
+      location: locationId,
+      
+      circlers: listOfCirclers
+
+    })
+    circleObj.forEach(obj=>{
+      console.log(obj.circlers);
+    })
+    
+  }
   
+
+}
+app.get('/api', function(req, res)
+    {  
+      randomAssignCircles();                                                    // an object where 'data' is equal to the 'rows' we
+    });
+    app.get('/print', function(req, res)
+    {  
+      console.log(allUsers);
+      console.log(allLocations);                                                    // an object where 'data' is equal to the 'rows' we
+    });    
+readData();
 
 
 
