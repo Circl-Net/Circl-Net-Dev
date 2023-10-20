@@ -5,31 +5,19 @@
 // Express
 var express = require('express');
 var app = express();
-//PORT = 8000;
+PORT = 8018;
 
 // Database
 //var db = require('./database/db-connector')
-// Get an instance of mysql we can use in the app
 var mysql = require('mysql')
 
 // Create a 'connection pool' using the provided credentials
-let connection = mysql.createConnection({
+let db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '159357@',
     database: 'mysql'
 });
-
-// Export it for use in our applicaiton
-//module.exports.pool = pool;
-connection.connect(function(err) {
-  if (err) {
-    return console.error('error: ' + err.message);
-  }
-
-  console.log('Connected to the MySQL server.');
-});
-
 //const { engine } = require('express-handlebars');
 //var exphbs = require('express-handlebars');     // Import express-handlebars
 const { query } = require ('express');
@@ -40,11 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 // Express
-
+/*
 //const express = require("express");
 const csvParser = require("csv-parser");
 const fs = require('fs');
-const PORT = process.env.PORT || 3003;
+//const PORT = process.env.PORT || 3003;
 
 //const app = express();
 let allUsers = [];
@@ -116,8 +104,17 @@ app.get('/api', function(req, res)
       console.log(allLocations);                                                    // an object where 'data' is equal to the 'rows' we
     });    
 readData();
-
-
+*/
+/*  ---------------- Read and create the Users Page -------------------------- */
+app.get('/users', function (req, res)
+    {
+        let query1= `SELECT user_id AS "User ID", user_name AS "User Name", email AS Email, password AS Password 
+        FROM Users;`;
+       
+        db.pool.query(query1, function(error, rows, fields){  
+            res.render('users', {data: rows});
+            })
+    });
 
 // // Database
 // var db = require('./database/db-connector')
