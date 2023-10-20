@@ -20,16 +20,6 @@ const papa = require('papaparse');
 const file = fs.createReadStream('./data/user.csv');
 var count = 0; // cache the running count
 let allUsers;
-papa.parse(file, {
-    worker: true, // Don't bog down the main thread if its a big file
-    step: function(result) {
-        // do stuff with result
-    },
-    complete: function(results, file) {
-
-        allUsers=results.data;
-    }
-});
 
 const CAPACITY=10;
 
