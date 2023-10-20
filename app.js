@@ -8,22 +8,24 @@ var app = express();
 PORT = 8018;
 
 // Database
-//var db = require('./database/db-connector')
-var mysql = require('mysql')
+var db = require('./database/db-connector')
+//var mysql = require('mysql')
 
 // Create a 'connection pool' using the provided credentials
-let db = mysql.createConnection({
+/*let db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '159357@',
     database: 'mysql'
-});
+});*/
 //const { engine } = require('express-handlebars');
 //var exphbs = require('express-handlebars');     // Import express-handlebars
 const { query } = require ('express');
 //app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 //app.set('view engine', '.hbs');  
-
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
@@ -110,9 +112,9 @@ app.get('/users', function (req, res)
     {
         let query1= `SELECT user_id AS "User ID", user_name AS "User Name", email AS Email, password AS Password 
         FROM Users;`;
-       
         db.pool.query(query1, function(error, rows, fields){  
-            res.render('users', {data: rows});
+            //res.render('users', {data: rows});
+            res.json({rows})
             })
     });
 

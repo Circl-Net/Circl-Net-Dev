@@ -2,11 +2,11 @@
 var mysql = require('mysql')
 
 // Create a 'connection pool' using the provided credentials
-let connection = mysql.createConnection({
+let pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '159357@',
-    database: 'mysql'
+    database: 'circle'
 });
 
 // Export it for use in our applicaiton
