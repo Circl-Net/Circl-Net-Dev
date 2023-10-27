@@ -17,10 +17,8 @@ import Signup from './pages/Signup.js';
 //import * as fs from 'node:fs';
 
 
-*/
-function App() {
 
-  randomAssignCircles();
+function App() {
 
   return (
     <div className="App">

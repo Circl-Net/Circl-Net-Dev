@@ -1,101 +1,22 @@
-//Citation Scope: Node.js and database connection set up on flip and each CRUD operation. 
-//Date: 08/12/2023
-//Originality: Adapted
-//Source: https://github.com/osu-cs340-ecampus/nodejs-starter-app/ 
-// Express
+
 var express = require('express');
 var app = express();
-PORT = 8018;
+
+const PORT = process.env.PORT || 3003;
 
 // Database
 var db = require('./database/db-connector')
-//var mysql = require('mysql')
 
-// Create a 'connection pool' using the provided credentials
-/*let db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '159357@',
-    database: 'mysql'
-});*/
-//const { engine } = require('express-handlebars');
-//var exphbs = require('express-handlebars');     // Import express-handlebars
 const { query } = require ('express');
-//app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
-//app.set('view engine', '.hbs');  
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
+
 // Express
 /*
-//const express = require("express");
-const csvParser = require("csv-parser");
-const fs = require('fs');
-//const PORT = process.env.PORT || 3003;
 
-//const app = express();
-let allUsers = [];
-let allLocations=[];
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
-function readData(){
-  fs.createReadStream("./circle/src/data/user.csv")
-  .pipe(csvParser())
-  .on("data", (data)=> {
-    if (data){
-      allUsers.push(
-        data
-      )
-    }
-  });
-  fs.createReadStream("./circle/src/data/location.csv")
-  .pipe(csvParser())
-  .on("data", (data)=> {
-    allLocations.push(data);
-  });
-}
-const CAPACITY=10;
 
-console.log(allUsers);
-let circleObj = [];
-function random(min, max){
-  return Math.floor(Math.random() * max) + min;
-}
-function getRandomUsers(num){
-  let list = [];
-  let currId = 1;
-  for (let p = 0; p < num; p++){
-    currId = random(currId, num);
-    list.push(allUsers[currId]);
-  }
-  return list;
-}
-function randomAssignCircles(){
-  const numOfCircles = random(1,10);
-  console.log(numOfCircles);
-
-  for (let i = 0; i < numOfCircles; i++){
-    const numOfCirclers = random(1, CAPACITY);
-    let listOfCirclers = getRandomUsers(numOfCirclers);
-    const locationId = random(1, allLocations.length);
-    circleObj.push({
-      location: locationId,
-      
-      circlers: listOfCirclers
-
-    })
-    circleObj.forEach(obj=>{
-      console.log(obj.circlers);
-    })
-    
-  }
-  
-
-// }
 app.get('/api', function(req, res)
     {  
       randomAssignCircles();                                                    // an object where 'data' is equal to the 'rows' we
@@ -109,18 +30,6 @@ readData();
 
 
 
-// Database
-var db = require('./database/db-connector')
-
-const { engine } = require('express-handlebars');
-var exphbs = require('express-handlebars');     // Import express-handlebars
-const { query } = require ('express');
-app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
-app.set('view engine', '.hbs');  
-
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/public'));
 
 /*
     ROUTES
@@ -131,32 +40,57 @@ app.get('/', function(req, res)
     {  
         res.render('index');                                                     // an object where 'data' is equal to the 'rows' we
     });  
-
+//insertAllUsers();
 /*  ---------------- Read and create the Users Page -------------------------- */
 app.get('/users', function (req, res)
     {
-        let query1= `SELECT user_id AS "User ID", user_name AS "User Name", email AS Email, password AS Password 
-        FROM Users;`;
+    insertAllUsers();
+        
+        let query1= `SELECT * FROM Users;`;
        
         db.pool.query(query1, function(error, rows, fields){  
-            res.render('users', {data: rows});
+            res.json( rows);
             })
     });
 
+app.get('/profile/:_username', (req, res)=>{
+   let data =req.params._username;
+  
+   
+    let showUser = `SELECT * from Users WHERE username = ?;`;
+    db.pool.query(showUser,[data], function(error, row, fields){
+        res.send(row);
+        console.log(row);
+        if (!resultError){
+           
+        }
+    })
+}
+)
+function resultError(error, res){
+    if (error){
+        console.log(error.errno);
+        res.sendStatus(400);
+        return true;
+    }
+    else {
+        return false;
 
+    }
+}
 app.post('/add-user-ajax', function(req, res, next){
     
     let data = req.body;
     let addUserQuery = `INSERT INTO Users (user_name, email, password) VALUES ('${data.username}', '${data.email}', '${data.password}');`;
     let readNewUserQuery = `SELECT * FROM Users WHERE user_name = ?;`;
-    db.pool.query(addUserQuery, function (error, row, fields){
+    db.pool.query(addUserQuery, function (error, rows){
         if (error){
             console.log(error.errno);
             res.sendStatus(400);
-            if (error.errno == 1062){
+         
      
             }
-        }
+        
         else{
             db.pool.query(readNewUserQuery, [data.username], function(error, row, fields){
                 if (error){

@@ -30,7 +30,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
-  `user_name` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`user_id`))
@@ -44,8 +44,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Posts` (
   `post_id` INT NOT NULL AUTO_INCREMENT,
   `content` MEDIUMTEXT NOT NULL,
-  `access` ENUM('Public', 'Public to friends', 'Private') NOT NULL,
-  `user_id` INT NOT NULL,
+  `create_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `likes` INT ZEROFILL NULL,
+  `User_id` INT NOT NULL,
+  `access` ENUM("Everyone", "Friends", "Circlers", "Me") NULL,
   `location_id` INT NULL,
   PRIMARY KEY (`post_id`),
   INDEX `fk_Posts_Users1_idx` (`user_id` ASC) VISIBLE,
