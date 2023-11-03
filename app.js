@@ -44,7 +44,7 @@ app.get('/', function(req, res)
 /*  ---------------- Read and create the Users Page -------------------------- */
 app.get('/users', function (req, res)
     {
-    insertAllUsers();
+
         
         let query1= `SELECT * FROM Users;`;
        
@@ -67,6 +67,67 @@ app.get('/profile/:_username', (req, res)=>{
     })
 }
 )
+app.get('/profile/:_username/friends', (req, res)=>{
+    let data =req.params._username;
+   
+    
+     let showUser = `SELECT * from Users WHERE username = ?;`;
+     db.pool.query(showUser,[data], function(error, row, fields){
+         res.send(row);
+         console.log(row);
+         if (!resultError){
+            
+         }
+     })
+ }
+ )
+app.get('/me/:_username', (req, res)=>{
+    let data =req.params._username;
+   
+    
+     let showUser = `SELECT * from Users WHERE username = ?;`;
+     db.pool.query(showUser,[data], function(error, row, fields){
+         res.send(row);
+         console.log(row);
+         if (!resultError){
+            
+         }
+     })
+ }
+ )
+
+
+//circle : cirlce-name-by-user-name
+app.get('/:_circleId', (req, res)=>{
+    let id = req.params._circleId;
+
+     let showCircles = `SELECT * from Circles WHERE circle_id= ?;`;
+     let showCirclers = `SELECT username from Users INNER JOIN Circlers ON Circlers.user_id = Users.user_Id WHERE Circlers.circle_Id = ?;`
+     db.pool.query(showCircles,[id], function(error, row, fields){
+         res.send(row);
+         console.log(row);
+         if (!resultError){
+            db.pool.query(showCirclers, [id], function (error, row, fields){
+                res.send(row);
+            })
+            
+         }
+     })
+ }
+ )
+app.get('/profile/:_username/circles', (req, res)=>{
+    let data =req.params._username;
+
+     let showUser = `SELECT * from Users WHERE username = ?;`;
+     db.pool.query(showUser,[data], function(error, row, fields){
+         res.send(row);
+         console.log(row);
+         if (!resultError){
+            
+         }
+     })
+ }
+ )
 function resultError(error, res){
     if (error){
         console.log(error.errno);

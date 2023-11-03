@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `Posts` (
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 
-
 -- -----------------------------------------------------
 -- Table `Circles`
 -- -----------------------------------------------------
