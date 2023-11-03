@@ -4,12 +4,12 @@ function Profile({user}) {
     
   const username = async () => {
 
-    const response = await fetch(`/items/${user._username}`),
+    const response = await fetch(`/items/${user._username}`)
     if (response.status === 200) {
       
       return response;
     } else {
-      alert(`Error fectching ${user._username} `;)
+      alert(`Error fectching ${user._username} `)
     }
 };
     return (
@@ -95,4 +95,4 @@ function Profile({user}) {
       </div>
       </>)};
 
-export default CirclePage;
+export default Profile;

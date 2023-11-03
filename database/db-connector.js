@@ -5,8 +5,8 @@ var mysql = require('mysql2')
 let pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'mysql',
-    database: 'circlenet',
+    password: 'Tsx123456@',
+    database: 'circlnet',
     multipleStatements: true
 });
 

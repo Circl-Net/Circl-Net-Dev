@@ -11,8 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema new_schema1
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Users`
+-- -- Table `Users` -------------------------------------
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Users` ;
 
