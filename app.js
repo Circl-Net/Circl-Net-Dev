@@ -9,9 +9,9 @@ var db = require('./database/db-connector')
 
 const { query } = require ('express');
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/public'));
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true}));
+// app.use(express.static(__dirname + '/public'));
 
 // Express
 /*
@@ -38,7 +38,7 @@ readData();
 /*  --------------------- Read the Home Page ------------------------------------- */
 app.get('/', function(req, res)
     {  
-        res.render('index');                                                     // an object where 'data' is equal to the 'rows' we
+                                                            // an object where 'data' is equal to the 'rows' we
     });  
 //insertAllUsers();
 /*  ---------------- Read and create the Users Page -------------------------- */
