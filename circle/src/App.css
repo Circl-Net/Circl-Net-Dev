@@ -111,11 +111,13 @@ h1 {
 .circle{
     padding:10%;
     display:block;
-    width:max-content;
+    width:13vw;
+    height: 13vw;
     margin:auto;
     border-radius:50%;
     border-width: 1px;
-
+    min-width: 400px;
+    min-height: 400px;
     background-color:var(--subholder);
 
 }
