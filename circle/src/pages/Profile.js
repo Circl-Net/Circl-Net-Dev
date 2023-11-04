@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-function Profile({user}) {
-    
-  const username = async () => {
+function Profile({me}) {
+    const [user, setUser] = useState([]);
+    useEffect(() => {
+      fetch('http://localhost:3003/me/pirfectmoses')
+        .then((res) => {
+          res.json();
+          
+        })
+        .then((data) => {
+          console.log(data);
+          setUser(data);
+        })
+    }, []);
+    console.log(user)
 
-    const response = await fetch(`/items/${user._username}`)
-    if (response.status === 200) {
-      
-      return response;
-    } else {
-      alert(`Error fectching ${user._username} `)
-    }
-};
     return (
       <>
       <div class="flex-container">
@@ -23,7 +26,7 @@ function Profile({user}) {
         <div class="middle-col">
           <div class="circle-title">
             <div class="circle-title-1">
-              <h2>${username}</h2>
+              <h2>{user.username}</h2>
               <p class="circl-intro">We like San Diego!</p>
             </div>
             <div class="circle-title-2"><button>Follow</button></div>

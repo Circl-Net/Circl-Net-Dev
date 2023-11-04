@@ -7,7 +7,6 @@ function Login() {
      <div class="circle">
 
     <form action="/login" method="POST" id="login">
-      
     
         <label for="username" class="reqired"> 
         <input type="text" name="username" id="username" 

@@ -19,6 +19,7 @@ import Signup from './pages/Signup.js';
 
 
 function App() {
+const username = "pirfectmoses";
 
   return (
     <div className="App">
@@ -35,11 +36,11 @@ function App() {
           <section>
             <Routes>
               <Route path='/' element={<HomePage/>}/>
-              <Route path='/circle' element={<CirclePage />}/>
+             <Route path='/circle' element={<CirclePage />}/>
               <Route path='/login' element={<Login/>}/>
               <Route path='signup' element={<Signup/>}/>
               <Route path='/message' element={<Message/>}/>
-              <Route path='/profile' element={<Profile/>}/>
+              <Route path='/profile' element={<Profile me={username} />}/>
               <Route path='/signup' element={<Signup/>}/>
             </Routes>
           </section>
