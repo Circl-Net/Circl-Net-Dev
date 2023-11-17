@@ -1,23 +1,34 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import MapHeader from "../components/MapHeader";
+function CirclePage({ciname}) {
+  const [circle, setCircle] = useState([]);
+  
+  useEffect(() => {
+    fetch(`/${ciname}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setCircle(data);
+      })
+      .catch(error=> console.error(error))
+  }, []);
+    const [circler, setCircler] = useState([]);
+  useEffect(() => {
+    fetch(`/circler/${ciname}`)
+      .then((res) => {
+        return res.json();
+        
+      })
+      .then((data) => {
+        console.log(data);
+        setCircler(data);
+      })
+      .catch(error=> console.error(error))
+  }, []);
+  
 
-function CirclePage() {
-  // const redirect = useNavigate();
-  // const addCircle = async () => {
-  //  // const newItem = { nam, date, price };
-  //   const response = await fetch('/items', {
-  //       method: 'post',
-  //       body: JSON.stringify(newItem),
-  //       headers: {
-  //           'Content-Type': 'application/json',
-  //       },
-  //   });
-  //   if (response.status === 201) {
-  //       alert(`document added`);
-  //       redirect("/log");
-  //   } else {
-  //       alert(`document not added status code = ${response.status}`);
-  //       redirect("/log");
-  //   }
 
     return (
       <>
@@ -30,7 +41,7 @@ function CirclePage() {
         <div class="middle-col">
           <div class="circle-title">
             <div class="circle-title-1">
-              <h2>San Diegoism</h2>
+              <h2>{circle.name}</h2>
               <p class="circl-intro">We like San Diego!</p>
             </div>
             <div class="circle-title-2"><button>Follow</button></div>

@@ -14,6 +14,7 @@ import CirclePage from './pages/CirclePage.js';
 import Papa from 'papaparse';
 import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
+import Mapper from './pages/Mapper.js';
 //import * as fs from 'node:fs';
 
 
@@ -36,12 +37,13 @@ const username = "pirfectmoses";
           <section>
             <Routes>
               <Route path='/' element={<HomePage/>}/>
-             <Route path='/circle' element={<CirclePage />}/>
+             {/* <Route path='/circle' element={<CirclePage />}/> */}
               <Route path='/login' element={<Login/>}/>
               <Route path='signup' element={<Signup/>}/>
               <Route path='/message' element={<Message/>}/>
-              <Route path='/profile' element={<Profile me={username} />}/>
+              <Route path='/profile' element={<Profile user={username} />}/>
               <Route path='/signup' element={<Signup/>}/>
+              <Route path='/map' element={<Mapper/>}/>
             </Routes>
           </section>
         </main>

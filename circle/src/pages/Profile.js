@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
+;
 
-function Profile({me}) {
+function Profile({username}) {
     const [user, setUser] = useState([]);
     useEffect(() => {
-      fetch('http://localhost:3003/me/pirfectmoses')
+      fetch(`/me/${username}`)
         .then((res) => {
-          res.json();
+          return res.json();
           
         })
         .then((data) => {
           console.log(data);
           setUser(data);
         })
+        .catch(error=> console.error(error))
     }, []);
-    console.log(user)
+    //console.log(user)
 
     return (
       <>
+    
       <div class="flex-container">
         <div class="left-col">
           <div class="map-image">

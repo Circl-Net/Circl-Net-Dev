@@ -4,6 +4,9 @@
     --subholder:#b6f5b68c;
     --button:#81ada0;
 }
+.map{
+  height:100%;
+}
 
 body{
     margin: 0;
