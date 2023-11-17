@@ -2,33 +2,35 @@
 var express = require('express');
 var app = express();
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3004;
+const fs = require("fs");
 
+const csvParser = require("csv-parser");
 // Database
 var db = require('./database/db-connector')
 
 const { query } = require ('express');
 
-// app.use(express.json());
-// app.use(express.urlencoded({extended: true}));
+ app.use(express.json());
+ app.use(express.urlencoded({extended: true}));
+ const cors = require("cors");
+
+app.use(cors());
+
+//let username = 'pirfectmoses';
 // app.use(express.static(__dirname + '/public'));
-
-// Express
-/*
-
-
-app.get('/api', function(req, res)
-    {  
-      randomAssignCircles();                                                    // an object where 'data' is equal to the 'rows' we
-    });
-    app.get('/print', function(req, res)
-    {  
-      console.log(allUsers);
-      console.log(allLocations);                                                    // an object where 'data' is equal to the 'rows' we
-    });    
-readData();
-
-
+sandiego=[]
+fs.createReadStream("./circle/src/data/post.csv")
+.pipe(csvParser())
+.on("data", (data) => {
+  if (data) {
+    data.coordinate = data.coordinate.split(",").map(data=> parseFloat(data))
+    sandiego.push(data)
+  }
+});
+app.get('/sandiego', function(req, res){
+    res.json(sandiego)
+})
 
 
 /*
@@ -38,6 +40,7 @@ readData();
 /*  --------------------- Read the Home Page ------------------------------------- */
 app.get('/', function(req, res)
     {  
+       
                                                             // an object where 'data' is equal to the 'rows' we
     });  
 //insertAllUsers();
@@ -52,15 +55,46 @@ app.get('/users', function (req, res)
             res.json( rows);
             })
     });
+app.get('/me', function (req, res)
+    {
 
+        
+        let query1= `SELECT * FROM Users;`;
+       
+        db.pool.query(query1, function(error, rows, fields){  
+            res.json( rows);
+            })
+    });
+
+//circle : cirlce-name-by-user-name
+app.get('/myCircles', (req, res)=>{
+    //let id = req.params._circleId;
+
+     //let showCircles = `SELECT * from Circlers circle_id= ?;`;
+     let showCircles = `SELECT name from Circles WHERE circle_id = (SELECT circle_id from Circlers INNER JOIN Users ON Circlers.user_id = Users.user_id WHERE Users.user_id = ${my_id});`
+     
+     db.pool.query(showCircles,[id], function(error, row, fields){
+         res.send(row);
+         console.log(row);
+         if (!resultError){
+            db.pool.query(showCirclers, [id], function (error, row, fields){
+                res.send(row);
+            })
+            
+         }
+     })
+ }
+ )
 app.get('/profile/:_username', (req, res)=>{
    let data =req.params._username;
   
    
     let showUser = `SELECT * from Users WHERE username = ?;`;
     db.pool.query(showUser,[data], function(error, row, fields){
-        res.send(row);
-        console.log(row);
+        res.json({username: 'tee'});
+       // res.send(row)
+       
+        console.log(res);
         if (!resultError){
            
         }
@@ -81,13 +115,13 @@ app.get('/profile/:_username/friends', (req, res)=>{
      })
  }
  )
-app.get('/me/:_username', (req, res)=>{
+
+ app.get('/me/:_username', (req, res)=>{
     let data =req.params._username;
-   
-    
      let showUser = `SELECT * from Users WHERE username = ?;`;
      db.pool.query(showUser,[data], function(error, row, fields){
-         res.send(row);
+         res.json(row[0]);
+         console.log(req);
          console.log(row);
          if (!resultError){
             
@@ -95,6 +129,7 @@ app.get('/me/:_username', (req, res)=>{
      })
  }
  )
+
 
 
 //circle : cirlce-name-by-user-name

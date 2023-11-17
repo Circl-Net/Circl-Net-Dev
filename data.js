@@ -23,13 +23,14 @@ const { get } = require("http");
 const { join } = require("path");
 
 let allUsers = [];
-let allLocations = [],
-  allCircles = [];
+let allLocations = [];
+ let allCircles = [];
 function readAllUsers() {
   fs.createReadStream("./circle/src/data/user.csv")
     .pipe(csvParser())
     .on("data", (data) => {
       if (data) {
+        
         allUsers.push(data);
       }
     });
@@ -39,7 +40,7 @@ function readAllCircles() {
     .pipe(csvParser())
     .on("data", (data) => {
       if (data) {
-        allCircles.push(data);
+        allCircles.push({data});
       }
     });
 }
@@ -85,14 +86,14 @@ function truncateTable(tablename) {
 }
 function insertAllCircles() {
   truncateTable("Circles");
-  allCircles.forEach((obj) => {
-    let addUserQuery = `INSERT INTO Circles (name) VALUES ("${obj.name}");`;
-    db.pool.query(addUserQuery, function (error, row, fields) {
+  for (let obj of allCircles) {
+    let addQuery = `INSERT INTO Circles (name) VALUES ("${obj.name}");`;
+    db.pool.query(addQuery, function (error, row, fields) {
       if (error) {
         console.log(error.sql);
       }
     });
-  });
+  };
 }
 
 function insertAllCirclers() {
@@ -135,6 +136,7 @@ function getRandomUsers(num) {
 function randomAssignCircles() {
   const CAPACITY = 10;
   allCircles.forEach((obj) => {
+  
     const numOfCirclers = random(0, CAPACITY);
 
     const circlers = getRandomUsers(numOfCirclers);
