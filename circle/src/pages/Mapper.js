@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import MapHeader from "../components/MapHeader";
-import { APIProvider, Map, Marker,useMarkerRef } from "@vis.gl/react-google-maps";
+import { APIProvider, Map, Marker,useMarkerRef, InfoWindow } from "@vis.gl/react-google-maps";
 // function CirclerBlurbBox({ciname}){
 //   const [allCirclers, setAllCirclers] = useState([]);
 //   useEffect(() => {
@@ -40,6 +40,7 @@ import { APIProvider, Map, Marker,useMarkerRef } from "@vis.gl/react-google-maps
 function Mapper() {
 const [markerRef, marker] = useMarkerRef();
 const [locations, setLocations] = useState([])
+const toggleInfoWindow = () => (previousState => !previousState);
 
   useEffect(() => {
     fetch(`/sandiego`)
@@ -53,7 +54,12 @@ const [locations, setLocations] = useState([])
       .catch(error=> console.error(error))
   }, []);
  const  head = {name: "San Diegoism", bio: "We like San Diego"}
+  let posts = []
+  const [postPop, setPostPop] = useState(false);
   
+  const popPost =() =>{
+    SetPostPop(previousState => !previousState);
+  }
 
     return (
       <>
@@ -66,9 +72,13 @@ const [locations, setLocations] = useState([])
      
         {locations.map(data=>
        
-         <Marker ref={markerRef} position={{lat: data.coordinate[0], lng: data.coordinate[1]}} />
+         <Marker onClick={openPosts} ref={markerRef} position={{lat: data.coordinate[0], lng: data.coordinate[1]}} />
+
         )}
-       
+        {postPop && (
+          <InfoWindow anchor={marker}>
+          </InfoWindow>
+        )}
 
       </Map>
     </APIProvider>
