@@ -68,8 +68,6 @@ function insertAllUsers() {
     let addUserQuery = `INSERT INTO Users (username, email, password) VALUES ('${user.user_name}', '${user.name}', '${user.password}');`;
     db.pool.query(addUserQuery, function (error, row, fields) {
       if (error) {
-        console.log(error.sqlMessage);
-        
       }
     });
   }
@@ -78,7 +76,7 @@ function insertAllUsers() {
 function truncateTable(tablename) {
   let truncateQuery = `SET FOREIGN_KEY_CHECKS=0;truncate table ${tablename};SET FOREIGN_KEY_CHECKS=1;`;
   db.pool.query(truncateQuery, function (error, row, fields) {
-    if (error) console.log(error);
+    if (error);
     else if (row) {
       console.log(`truncated ${tablename}`);
     }
@@ -107,7 +105,6 @@ function insertAllCirclers() {
       db.pool.query(addCircler, function (error, row, fields) {
         if (error) {
          // console.log(error.sqlMessage);
-         console.log(error.sql);
         }
         else{
          // console.log(index, user_id);
@@ -175,3 +172,5 @@ function insertRandomFriendships() {
   }
 
 }
+
+
