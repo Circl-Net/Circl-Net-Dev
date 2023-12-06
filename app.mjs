@@ -1,22 +1,32 @@
+import express from 'express';
+import bcrypt from 'bcrypt';
+import cors from 'cors';
+import jwt from 'jsonwebtoken';
+import low from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync.js';
 
-var express = require('express');
-var app = express();
+const adapter = new FileSync('./circle/src/data/login.json');
+const login = low(adapter);
+const app = express();
+
+// Define a JWT secret key. This should be isolated by using env variables for security
+const jwtSecretKey = "dsfdsfsdfdsvcsvdfgefg"
 
 const PORT = process.env.PORT || 3004;
-const fs = require("fs");
+import fs from "fs";
 
-const csvParser = require("csv-parser");
+import csvParser from 'csv-parser';
 // Database
-var db = require('./database/db-connector')
+import { query } from 'express';
+import PropTypes from 'prop-types';
+//import db from './database/db-connector';
 
-const { query } = require ('express');
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
- app.use(express.json());
- app.use(express.urlencoded({extended: true}));
- const cors = require("cors");
 
 app.use(cors());
-
+/*
 //let username = 'pirfectmoses';
 // app.use(express.static(__dirname + '/public'));
 locaitons=[]
@@ -50,14 +60,14 @@ app.get('/sandiego', function(req, res){
     ROUTES
 */
 
-/*  --------------------- Read the Home Page ------------------------------------- */
+/*  --------------------- Read the Home Page ------------------------------------- 
 app.get('/', function(req, res)
     {  
        
                                                             // an object where 'data' is equal to the 'rows' we
     });  
 //insertAllUsers();
-/*  ---------------- Read and create the Users Page -------------------------- */
+/*  ---------------- Read and create the Users Page -------------------------- 
 app.get('/users', function (req, res)
     {
 
@@ -216,7 +226,7 @@ app.post('/add-user-ajax', function(req, res, next){
     })
 })
 
-/*  ---------------- Read and create the Friendships Page -------------------------- */
+//  ---------------- Read and create the Friendships Page -------------------------- 
 
 let readUserQuery = `SELECT * from Users`;
 let readFriendshipQuery = `SELECT Friendships.friendship_id AS "Friendship ID", LEFT(Friendships.start_date, 10) AS "Start Date", calMulCt(user.user_id, friend.user_id) AS "Mutual Friends Count", user.user_name AS "User 1 Name", 
@@ -258,8 +268,8 @@ app.post('/add-friendship-ajax', function(req, res, next){
         })
       })
 
-/*  ---------------- Read, create, update, and delete the Posts Page -------------------------- */
-/*  ---------------- Update and delete the Posts_has_Friendships Page ------------------------- */
+//  ---------------- Read, create, update, and delete the Posts Page -------------------------- 
+//  ---------------- Update and delete the Posts_has_Friendships Page ------------------------- 
 
 app.get('/posts', function (req, res)
     {
@@ -496,7 +506,7 @@ app.get('/posts-friendships', function (req, res)
     });
 
 
-/*  ---------------- Read and create the Locations Page -------------------------- */
+//  ---------------- Read and create the Locations Page -------------------------- 
 app.get('/locations', function (req, res)
     {
         let query = `SELECT Locations.location_id AS "Location ID", Locations.address AS "Address Line", Locations.city
@@ -537,12 +547,94 @@ app.post('/add-location-ajax', function(req, res, next){
         }
     })
   })
+*/
 
- 
+//---------------------------- APIs for Login Page ----------------------------------------------------------------------------
+// Basic home route for the API
+app.get("/login", (_req, res) => {
+    res.send("Auth API.\nPlease use POST /auth & POST /verify for authentication")
+})
+
+// The auth endpoint that creates a new user record or logs a user based on an existing record
+app.post("/auth", (req, res) => {
+
+    const { usernameOrEmailOrPhone, password } = req.body;
+
+    // Loop up the user entry in the database
+    const user = login.get("users").value().filter(
+        user => user.email === usernameOrEmailOrPhone)
+
+    // If found, compare the hashed passwords and generate the JWT token for the user
+    if (user.length === 1) {
+        bcrypt.compare(password, user[0].password, function (_err, result) {
+            if (!result) {
+                return res.status(401).json({ message: "Invalid password" });
+            } else {
+                let loginData = {
+                    usernameOrEmailOrPhone,
+                    signInTime: Date.now(),
+                };
+
+                const token = jwt.sign(loginData, jwtSecretKey);
+                res.status(200).json({ message: "success", token });
+            }
+        });
+    
+    // If no user is found, hash the given password and create a new entry in the auth db with the email and hashed password
+    } else if (user.length === 0) {
+        bcrypt.hash(password, 10, function (_err, hash) {
+            console.log({ usernameOrEmailOrPhone, password: hash })
+            login.get("users").push({ usernameOrEmailOrPhone, password: hash}).write()
+
+            let loginData = {
+                usernameOrEmailOrPhone, 
+                signInTime: Date.now(),
+            };
+
+            const token = jwt.sign(loginData, jwtSecretKey);
+            res.status(200).json({ message: "success", token });
+        });
+    }
+});
+
+// The verify endpoint that checks if a given JWT token is valid
+app.post('/verify', (req, res) => {
+    const tokenHeaderKey = "jwt-token";
+    const authToken = req.headers[tokenHeaderKey];
+    try {
+        const verified = jwt.verify(authToken, jwtSecretKey);
+        if (verified) {
+            return res
+                .status(200)
+                .json({ status: "logged in", message: "success" });
+        } else {
+            //Access Denied
+            return res.status(401).json({ status: "invalid auth", message: "error" });
+        }
+    } catch (error) {
+        // Access Denied 
+        return res.status(401).json({ status: "invalid auth", message: "error" });
+    }
+})
+
+// An endpoint to see if there's an existing account for a given input
+app.post('/check-account', (req, res) => {
+    const { usernameOrEmailOrPhone } = req.body
+
+    console.log(req.body)
+
+    const user = login.get("users").value().filter(user => user.email === usernameOrEmailOrPhone)
+
+    console.log(user)
+
+    res.status(200).json({
+        status: user.length === 1 ? "User exists" : "User does not exist", userExists: user.length === 1
+    })
+
+})
 
 
-  
-  /*
+/*
 
     LISTENER
 */
