@@ -17,14 +17,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 
+
+let allUsers = [];
+let allLocations = [];
+ let allCircles = [];
 const csvParser = require("csv-parser");
 const fs = require("fs");
 const { get } = require("http");
 const { join } = require("path");
 
-let allUsers = [];
-let allLocations = [];
- let allCircles = [];
 function readAllUsers() {
   fs.createReadStream("./circle/src/data/user.csv")
     .pipe(csvParser())

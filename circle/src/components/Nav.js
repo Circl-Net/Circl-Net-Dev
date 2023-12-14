@@ -11,6 +11,7 @@ function Nav(){
             <Link to="../profile">Profie</Link>
             <Link to="../setting">Setting</Link>
             <Link to="../login">Login</Link>
+        
 
         </nav>
     );

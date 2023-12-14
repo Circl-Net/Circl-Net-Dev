@@ -19,15 +19,19 @@ app.use(cors());
 
 //let username = 'pirfectmoses';
 // app.use(express.static(__dirname + '/public'));
-locaitons=[]
-posts=[]
+let sandiego=[]
+let posts=[]
 fs.createReadStream("./circle/src/data/post.csv")
 .pipe(csvParser())
 .on("data", (data) => {
+    let idx = 0;
 
   if (data) {
     data.coordinate = data.coordinate.split(",").map(data=> parseFloat(data))
-    locations.push(data)
+    sandiego.push(data)
+    sandiego.forEach(place=>{
+        place.id = idx++;
+    })
   }
 });
 fs.createReadStream("./circle/src/data/sandiego.csv")
@@ -35,16 +39,17 @@ fs.createReadStream("./circle/src/data/sandiego.csv")
 .on("data", (data) => {
   if (data) {
     posts.push(data)
+    
   }
 });
 app.get('/sandiego', function(req, res){
-    idx = 0;
-    sandiego.forEach(place=>{
-        place.id = id++;
+    const group = Object.groupBy(posts, ({location_id})=> location_id);
+    sandiego.forEach(location=>{
+     
+        location.posts = group[location.id];
     })
     res.json(sandiego)
 })
-
 
 /*
     ROUTES
