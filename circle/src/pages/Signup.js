@@ -1,148 +1,96 @@
-import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { React, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
-function Signup () {
-    const redirect = useNavigate();
-    const [username, setUsername] = useState('');
-    const [gender, setGender] = useState('');
-    const addUser = async () => {
-        const newUser = { username, gender };
-        const response = await fetch('/add-user', {
-            method: 'post',
-            body: JSON.stringify(newUser),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if(response.status === 201){
-            alert(`document added`);
-            redirect("/");
-        } else {
-            alert(`document not added status code = ${response.status}`);
-            redirect("/");
+function Signup() {
+
+    const history = useNavigate();
+
+    const [loginInput, setLoginInput] = useState('');
+    const [password, setPassword] = useState('');
+
+    async function submit(e) {
+        e.preventDefault();
+
+
+        try{
+
+            await axios.post("http://localhost:3000/signup",{
+                loginInput, password
+            })
+            .then(res=>{
+                if(res.data==="exist"){
+                    alert("User already exists")
+                }
+                else if(res.data==="notexist"){
+                    history("/", {state:{id: loginInput}})
+                }
+            })
+            .catch(e=>{
+                alert("Wrong details")
+                console.log(e);
+            })
+
         }
-    };
+        catch(e){
+
+            console.log(e);
+
+        }
+
+
+    }
     return (
-        <>
-        <h1>Join a world wide net of Circlers</h1>
-<div class="circle">
-    <form action="/signup" method="POST"  id="signup">
-        <legend>Tell us a bit about yourself...</legend>
-        <div class="flex-container">
-        <label for="username" class="required"> 
-         <input type="text" name="username" id="username" 
-         onChange={e => setUsername(e.target.value)}
-        required
-        /*pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"*/
-        placeholder="User Name" />
-        </label>
-        <label for="lastname" class="required"> 
-            <input type="text" name="lastname" id="lastname" 
-            pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
-            placeholder="Last Name " />
-            </label>
+        <div className="circle">
+            <div className="login-title">
+                <div>Signup</div>
             </div>
-            <div class="flex-container">
-                <input type="radio" name="gender" id="male" value='male' onChange={e => {setGender(e.target.value); console.log(e.target.value)}}/>
-                <label for="male">Male</label>
-
-                <input type="radio" name="gender" id="female" value='female' onChange={e => {setGender(e.target.value); console.log(e.target.value)}}/>
-                <label for="female">Female</label>
-            
-                <input type="radio" name="gender" id="nonbinary" value='nonbinary' onChange={e => {setGender(e.target.value); console.log(e.target.value)}}/>
-                
-                <label for="nonbinary">Nonbinary</label>
-            </div>
-            <div class="flex-container">
-
-                <label for="dob" className="required"> Date of birth: 
-                    <input type="date" name="lastname" id="dob" 
-                    
-                    pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"/>
+            <br />
+            <form action="/auth" method="POST" id="login">
+                {/*<div className='inputContainer'><p className="errorLabel">{emailError}</p>*/}
+                <p>
+                    <label htmlFor="loginInput" className="required">
+                        <input
+                            type="text"
+                            name="loginInput"
+                            id="loginInput"
+                            value={loginInput}
+                            onChange={(e) => setLoginInput(e.target.value)}
+                            required
+                            pattern= "^(\d{10})|([A-Za-z\d]+)|([^@]+@[^@]+\.[a-z]+)$"
+                            placeholder="Username, email, or phone number"
+                        />
                     </label>
-</div>
-           <div class="flex-container">
-            <div class="address"><label for="address" class="required"> 
-                <input type="textarea" name="address" id="address" 
+                </p>
                 
-                pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+.[a-z]+)"
-                maxlength="50"
-                placeholder="Address Line 1 " />
-                </label></div>
-            <div><label for="city" class="required city"> 
-                    <input type="textarea" name="city" id="city" 
-                    
-                    placeholder="City" />
-                    </label></div> 
+                {/*<div className='inputContainer'><p className="errorLabel">{passwordError}</p>*/}
+                <label htmlFor="password" className="required"></label>
+                <input
+                    type="password"
+                    value={password}
+                    name="password"
+                    id="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    placeholder="Password"
+                />
                 
-                <label for="state" class="required state"> 
-                    <input type="textarea" name="state" id="state" 
-                    
-                    placeholder="State " />
-                    </label>
-                    <label for="zip" class="required zip"> 
-                        <input type="number" name="zip" id="city" 
-                        
-                        maxlength="10"
-                        size="5"
-                        placeholder="ZIP Code" />
-                    </label>
 
-           </div>
-        <button type="submit" id="submit" onSubmit={addUser}>Done</button>
-      
-    </form>
+                <div className="flex-container" id="not-login">
+                    <Link to="./login">Log in</Link>
+                    <a href="">Forgot password</a>
+                </div>
+
+                <input
+                    className="submit"
+                    type="button"
+                    value="Log in"
+                    onClick={submit}
+                />
+            </form>
 </div>
-<div class="circle">
-    <form action="/signup" method="POST"  id="login">
-        <legend>Account</legend>
-      
-        <label for="username" class="required"> 
-        <input type="text" name="username" id="username" 
-        required
-        placeholder="User Name " />
-        </label>
-        
-        <label for="password" class="required"></label>
-        <input type="password" 
-        name="password" 
-        id="password"
-        required
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        placeholder="Password"/> 
-
-        <label for="password" class="required"></label>
-        <input type="password" 
-        name="password" 
-        id="password"
-        required
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        placeholder="Confirm your password"/> 
-    
-        <button type="submit">Done</button>
-    </form>
-</div>
-
-    <label for="location" class="required"> 
-        Search for your circles...
-        <input type="text" name="location" id="locaion" 
-        required
-        placeholder="San Diego"/ >
-        </label>
-
-<div>
-    <div class="flex-container">
-        <div class="circle">
-            San Diego 
-        </div>
-        <div>
-
-        </div>
-    </div>
-
-</div>
-        </>
-    )    
+    );
 }
 
 export default Signup;

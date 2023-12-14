@@ -1,3 +1,7 @@
 {
-  "users": []
+  "users": [
+    {
+      "password": "$2b$10$Ib9mr/7Yw5hJeo/rQj97IuqmTaSxJwBDjPAbiaWOpMjJgqVz4Qvqe"
+    }
+  ]
 }

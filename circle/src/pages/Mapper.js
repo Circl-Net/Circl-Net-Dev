@@ -83,7 +83,7 @@ const toggleInfoWindow = () => (previousState => !previousState);
       </Map>
     </APIProvider>
     </div>
-  
+        
       </>)};
 
 export default Mapper;

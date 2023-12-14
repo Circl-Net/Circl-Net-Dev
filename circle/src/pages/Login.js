@@ -1,66 +1,70 @@
-import React, { useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 function Login() {
-    const [password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [usernameOrEmailOrPhone, setUsernameOrEmailOrPhone] = useState("");
 
-    const navigate = useNavigate();
+    const history=useNavigate();
 
-    
-    const user = {
-    email: "test@test.com",
-    username: "test123",
-    password: "123456"
-    };
 
-    const onButtonClick = () => {
-        
-        if ("" === usernameOrEmailOrPhone) {
-            setEmailError("Please enter your email or username or phone number.")
-            return
+    const [loginInput, setLoginInput] = useState('');
+    const [password, setPassword] = useState('');
+
+    async function submit(e) {
+        e.preventDefault();
+
+
+        try{
+
+            await axios.post("http://localhost:3000/",{
+                loginInput, password
+            })
+            .then(res=>{
+                if(res.data==="exist"){
+                    history("/", {state:{id:loginInput}})
+                }
+                else if(res.data==="notexist"){
+                    alert("User doesn't exist!")
+                }
+            })
+            .catch(e=>{
+                alert("Wrong details")
+                console.log(e);
+            })
+
+        }
+        catch(e){
+
+            console.log(e);
+
         }
 
-        if ("" === password) {
-            setPasswordError("Please enter a password")
-            return
-        }
-
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(usernameOrEmailOrPhone)) {
-            setEmailError("Please enter a valid email")
-            return
-        }
-
-        if (password.length < 7) {
-            setPasswordError("The password must be 8 characters or longer")
-            return
-        }
 
     }
-
     return (
         <div className="circle">
             <div className="login-title">
                 <div>Login</div>
             </div>
             <br />
-            <form action="/login" method="POST" id="login">
-                <div className='inputContainer'><p className="errorLabel">{emailError}</p>
-                <label htmlFor="usernameOrEmailOrPhone" className="required"></label>
-                <input
-                    type="text"
-                    name="usernameOrEmailOrPhone"
-                    id="usernameOrEmailOrPhone"
-                    value={usernameOrEmailOrPhone}
-                    onChange={(e) => setUsernameOrEmailOrPhone(e.target.value)}
-                    required
-                    pattern="(\d.{9})|([A-Za-z\d])|([^ @]+@[^ @]+\.[a-z]+)"
-                    placeholder="Username, email, or phone number"
-                /></div>
+            <form action="/auth" method="POST" id="login">
+                {/*<div className='inputContainer'><p className="errorLabel">{emailError}</p>*/}
+                <p>
+                    <label htmlFor="loginInput" className="required">
+                        <input
+                            type="text"
+                            name="loginInput"
+                            id="loginInput"
+                            value={loginInput}
+                            onChange={(e) => setLoginInput(e.target.value)}
+                            required
+                            pattern= "^(\d{10})|([A-Za-z\d]+)|([^@]+@[^@]+\.[a-z]+)$"
+                            placeholder="Username, email, or phone number"
+                        />
+                    </label>
+                </p>
                 
-                <div className='inputContainer'><p className="errorLabel">{passwordError}</p>
+                {/*<div className='inputContainer'><p className="errorLabel">{passwordError}</p>*/}
                 <label htmlFor="password" className="required"></label>
                 <input
                     type="password"
@@ -71,19 +75,19 @@ function Login() {
                     required
                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     placeholder="Password"
-                /></div>
+                />
                 
 
                 <div className="flex-container" id="not-login">
-                    <Link to="../signup">Not a Circler? Sign up</Link>
+                    <Link to="../Signup">Not a Circler? Sign up</Link>
                     <a href="">Forgot password</a>
                 </div>
 
                 <input
                     className="submit"
                     type="button"
-                    onClick={onButtonClick}
                     value="Log in"
+                    onClick={submit}
                 />
             </form>
         </div>
