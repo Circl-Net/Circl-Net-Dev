@@ -1,40 +1,7 @@
 import React, {useEffect, useState} from "react";
 import MapHeader from "../components/MapHeader";
 import { APIProvider, Map, Marker,useMarkerRef, InfoWindow } from "@vis.gl/react-google-maps";
-// function CirclerBlurbBox({ciname}){
-//   const [allCirclers, setAllCirclers] = useState([]);
-//   useEffect(() => {
-//     fetch(`/${ciname}/allCirclers`)
-//       .then((res) => {
-//         return res.json();
-        
-//       })
-//       .then((data) => {
-//         console.log(data);
-//         setCircler(data);
-//       })
-//       .catch(error=> console.error(error))
-//   }, []);
-//   return 
-// }
 
-
-// function CircleMapper({ciname}){
-//   const [circle, setCircle] = useState([]);
-//   useEffect(() => {
-//     fetch(`/circler/${ciname}`)
-//       .then((res) => {
-//         return res.json();
-        
-//       })
-//       .then((data) => {
-//         console.log(data);
-//         setCircler(data);
-//       })
-//       .catch(error=> console.error(error))
-//   }, []);
-//   return circler;
-// }
 import Post from "../components/Post";
 
  function Postpop({data}){

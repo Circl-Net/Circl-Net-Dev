@@ -1,20 +1,34 @@
+import styles from '../styles/MapHeader.module.css'
+import  React from 'react';
 
-import React from 'react';
-
-function MapHeader({header}){
+function CircleButton({image, status}){
+  return (
+    <>
+    <img
+            class="profile-image"
+            alt=" "
+            src="https://zoo.sandiegozoo.org/sites/default/files/body_side_image/Plan%20Your%20Visit-Direcions%20%26%20Parking.jpg"
+          />
+    </>
+  )
+  
+}
+export default function MapHeader({header}){
  // const [header, setHeader] = useState([]);
-
-
     return (
       <>
-        <div class="circle-title">
-            <div class="circle-title-1">
-              <h2>{header.name}</h2>
-              <p class="circl-intro">{header.bio}</p>
-            </div>
-            <div class="circle-title-2"><button>Follow</button></div>
+      <div className={styles.container}>
+      <h2>{header.name}</h2>
+      {header.bio}
+      <div className="circle">
+        <CircleButton 
+              image="https://zoo.sandiegozoo.org/sites/default/files/body_side_image/Plan%20Your%20Visit-Direcions%20%26%20Parking.jpg"
+
+            
+          />
+              </div>
+      
           </div>
-          </>
+        </>
     );
 }
-export default MapHeader;

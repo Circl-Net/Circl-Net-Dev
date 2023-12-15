@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //https://www.educative.io/answers/how-to-implement-a-server-for-reactjs-and-mysql-application
@@ -17,6 +17,7 @@ import Signup from './pages/Signup.js';
 import Mapper from './pages/Mapper.js';
 //import * as fs from 'node:fs';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
@@ -27,7 +28,6 @@ const username = "pirfectmoses";
 
       <BrowserRouter>
         <header>
-          <h1>Circl Net</h1>
 
           <Nav/>
 
