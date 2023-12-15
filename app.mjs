@@ -1,19 +1,30 @@
+import express from 'express';
+import bcrypt from 'bcrypt';
+import cors from 'cors';
+import jwt from 'jsonwebtoken';
+import low from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync.js';
 
-var express = require('express');
-var app = express();
+const adapter = new FileSync('./circle/src/data/login.json');
+const login = low(adapter);
+const app = express();
+
+// Define a JWT secret key. This should be isolated by using env variables for security
+const jwtSecretKey = "dsfdsfsdfdsvcsvdfgefg"
 
 const PORT = process.env.PORT || 3004;
-const fs = require("fs");
+import fs from "fs";
 
-const csvParser = require("csv-parser");
+import csvParser from 'csv-parser';
 // Database
-var db = require('./database/db-connector')
+import { query } from 'express';
+import PropTypes from 'prop-types';
+import collection from './mongo.js';
+//import db from './database/db-connector';
 
-const { query } = require ('express');
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
- app.use(express.json());
- app.use(express.urlencoded({extended: true}));
- const cors = require("cors");
 
 app.use(cors());
 
@@ -221,7 +232,7 @@ app.post('/add-user-ajax', function(req, res, next){
     })
 })
 
-/*  ---------------- Read and create the Friendships Page -------------------------- */
+//  ---------------- Read and create the Friendships Page -------------------------- */
 
 let readUserQuery = `SELECT * from Users`;
 let readFriendshipQuery = `SELECT Friendships.friendship_id AS "Friendship ID", LEFT(Friendships.start_date, 10) AS "Start Date", calMulCt(user.user_id, friend.user_id) AS "Mutual Friends Count", user.user_name AS "User 1 Name", 
@@ -263,8 +274,8 @@ app.post('/add-friendship-ajax', function(req, res, next){
         })
       })
 
-/*  ---------------- Read, create, update, and delete the Posts Page -------------------------- */
-/*  ---------------- Update and delete the Posts_has_Friendships Page ------------------------- */
+//  ---------------- Read, create, update, and delete the Posts Page -------------------------- 
+//  ---------------- Update and delete the Posts_has_Friendships Page ------------------------- 
 
 app.get('/posts', function (req, res)
     {
@@ -501,7 +512,7 @@ app.get('/posts-friendships', function (req, res)
     });
 
 
-/*  ---------------- Read and create the Locations Page -------------------------- */
+//  ---------------- Read and create the Locations Page -------------------------- 
 app.get('/locations', function (req, res)
     {
         let query = `SELECT Locations.location_id AS "Location ID", Locations.address AS "Address Line", Locations.city
@@ -542,12 +553,60 @@ app.post('/add-location-ajax', function(req, res, next){
         }
     })
   })
+*/
+//---------------------------- APIs for Login Page ----------------------------------------------------------------------------
+// Basic home route for the API
+app.get("/login", cors(), (req, res) => {
+    
+})
 
- 
+// The auth endpoint that creates a new user record or logs a user based on an existing record
+app.post("/login", async(req, res) => {
+    const {loginInput, password} = req.body;
+
+    try{
+
+        const check=await collection.findOne({loginInput:loginInput})
+
+        if (check) {
+            res.json("exist")
+        }
+        else {
+            res.json("notexist")
+        }
+    }
+    catch(e){
+        res.json("notexist")
+    }
+});
+
+app.post("/signup", async(req, res) => {
+    const {loginInput, password} = req.body;
+
+    const data={
+        loginInput: loginInput,
+        password:password
+    }
+
+    try{
+
+        const check=await collection.findOne({loginInput:loginInput})
+
+        if (check) {
+            res.json("exist")
+        }
+        else {
+            res.json("notexist")
+            await collection.insertMany([data])
+        }
+    }
+    catch(e){
+        res.json("notexist")
+    }
+});
 
 
-  
-  /*
+/*
 
     LISTENER
 */

@@ -64,7 +64,7 @@ const [locations, setLocations] = useState([])
       </Map>
     </APIProvider>
     </div>
-  
+        
       </>)};
 
 export default Mapper;

@@ -1,5 +1,5 @@
 import './styles/App.css';
-import React from 'react';
+import {React, useState} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //https://www.educative.io/answers/how-to-implement-a-server-for-reactjs-and-mysql-application
 
@@ -21,15 +21,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
-const username = "pirfectmoses";
+  const username = "pirfectmoses";
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [email, setEmail] = useState("")
+
 
   return (
     <div className="App">
 
       <BrowserRouter>
+        
         <header>
 
-          <Nav/>
+          <Nav email={email} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
 
         </header>
         
@@ -38,7 +42,7 @@ const username = "pirfectmoses";
             <Routes>
               <Route path='/' element={<HomePage/>}/>
              {/* <Route path='/circle' element={<CirclePage />}/> */}
-              <Route path='/login' element={<Login/>}/>
+              <Route path='/login' element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail}/>}/>
               <Route path='signup' element={<Signup/>}/>
               <Route path='/message' element={<Message/>}/>
               <Route path='/profile' element={<Profile user={username} />}/>
