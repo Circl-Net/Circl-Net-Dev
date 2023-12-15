@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 app.use(cors());
-/*
+
 //let username = 'pirfectmoses';
 // app.use(express.static(__dirname + '/public'));
 let sandiego=[]
@@ -66,14 +66,14 @@ app.get('/sandiego', function(req, res){
     ROUTES
 */
 
-/*  --------------------- Read the Home Page ------------------------------------- 
+/*  --------------------- Read the Home Page ------------------------------------- */
 app.get('/', function(req, res)
     {  
        
                                                             // an object where 'data' is equal to the 'rows' we
     });  
 //insertAllUsers();
-/*  ---------------- Read and create the Users Page -------------------------- 
+/*  ---------------- Read and create the Users Page -------------------------- */
 app.get('/users', function (req, res)
     {
 
@@ -232,7 +232,7 @@ app.post('/add-user-ajax', function(req, res, next){
     })
 })
 
-//  ---------------- Read and create the Friendships Page -------------------------- 
+//  ---------------- Read and create the Friendships Page -------------------------- */
 
 let readUserQuery = `SELECT * from Users`;
 let readFriendshipQuery = `SELECT Friendships.friendship_id AS "Friendship ID", LEFT(Friendships.start_date, 10) AS "Start Date", calMulCt(user.user_id, friend.user_id) AS "Mutual Friends Count", user.user_name AS "User 1 Name", 
