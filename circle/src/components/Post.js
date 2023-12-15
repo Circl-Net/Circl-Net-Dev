@@ -1,15 +1,15 @@
 import React from 'react';
-import Username from 'Username.js'
-function Post({username, text, image}){
+//import Username from 'Username.js'
+function Post({username, post}){
     return (
         <>
         <div class="posts">
         <div class="post-title">
-            <username />
+          {username}
         </div>
         <div class="post-content">
           <p class="post-text">
-           {text}
+           {post}
           </p>
           <img
             class="post-image"
@@ -30,3 +30,4 @@ function Post({username, text, image}){
       </>
     )
 }
+export default Post;

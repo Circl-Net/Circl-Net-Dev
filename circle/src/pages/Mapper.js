@@ -35,12 +35,36 @@ import { APIProvider, Map, Marker,useMarkerRef, InfoWindow } from "@vis.gl/react
 //   }, []);
 //   return circler;
 // }
+import Post from "../components/Post";
 
+ function Postpop({data}){
+  const [markerRef, marker] = useMarkerRef();
+  const [postPop, setPostPop] = useState(false);
+  if (data.posts){
 
-function Mapper() {
-const [markerRef, marker] = useMarkerRef();
+    const popPost =() =>setPostPop(state => !state);
+   const content = "<div> name</div>"
+    console.log(data.posts[0])
+
+    return (
+      <>
+     <Marker onClick={popPost} ref={markerRef} position={{lat: data.coordinate[0], lng: data.coordinate[1]}} />
+     {postPop && (
+      <InfoWindow anchor={marker} content={content}>
+        <Post {...data.posts[0]}/>
+      </InfoWindow>
+      
+    )}
+    </>
+    )
+     
+  }
+ 
+  
+}
+ function Mapper() {
+
 const [locations, setLocations] = useState([])
-const toggleInfoWindow = () => (previousState => !previousState);
 
   useEffect(() => {
     fetch(`/sandiego`)
@@ -48,18 +72,15 @@ const toggleInfoWindow = () => (previousState => !previousState);
         return res.json();
       })
       .then((data) => {
-       
+       // console.log(data);
         setLocations(data)
       })
       .catch(error=> console.error(error))
   }, []);
  const  head = {name: "San Diegoism", bio: "We like San Diego"}
-  let posts = []
-  const [postPop, setPostPop] = useState(false);
+
+
   
-  const popPost =() =>{
-    SetPostPop(previousState => !previousState);
-  }
 
     return (
       <>
@@ -69,16 +90,9 @@ const toggleInfoWindow = () => (previousState => !previousState);
 <div style={{ height: '100vh', width: '100%', position:'absolute'}}>
  <APIProvider apiKey={'AIzaSyAsIhO6IUL0y6fYsrtCAfhunqfngR83UbI'}>
       <Map className="map" zoom={12} center={{lat:32.7341524, lng: -117.1471279}}>
-     
-        {locations.map(data=>
-       
-         <Marker onClick={openPosts} ref={markerRef} position={{lat: data.coordinate[0], lng: data.coordinate[1]}} />
+        
+        {locations.map(data=> <Postpop data={data}/>)}
 
-        )}
-        {postPop && (
-          <InfoWindow anchor={marker}>
-          </InfoWindow>
-        )}
 
       </Map>
     </APIProvider>

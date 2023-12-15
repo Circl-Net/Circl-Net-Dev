@@ -48,6 +48,7 @@ function App() {
               <Route path='/profile' element={<Profile user={username} />}/>
               <Route path='/signup' element={<Signup/>}/>
               <Route path='/map' element={<Mapper/>}/>
+
             </Routes>
           </section>
         </main>
